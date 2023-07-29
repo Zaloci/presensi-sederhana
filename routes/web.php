@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use SebastianBergmann\CodeCoverage\Node\CrapIndex;
 
 /*
@@ -19,4 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [HomeController::class,'index']);
+Route::get('/login', [LoginController::class,'halamanlogin'])->name('login');
+Route::post('/login', [LoginController::class,'postlogin'])->name('postlogin');
+Route::get('/logout', [LoginController::class,'logout'])->name('logout');
+
+Route::group(['middleware' => ['auth', 'ceklevel:admin,karyawan']], function(){ 
+Route::get('/home', [HomeController::class,'index'])->name('home');
+});
