@@ -21,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [LoginController::class,'halamanlogin'])->name('login');
+Route::get('/registrasi', [LoginController::class,'registrasi'])->name('registrasi');
+Route::post('/simpanregistrasi', [LoginController::class,'simpanregistrasi'])->name('simpanregistrasi');
 Route::post('/login', [LoginController::class,'postlogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class,'logout'])->name('logout');
 
